@@ -17,13 +17,15 @@
   }
 
   .menu-trigger {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 2.4rem;
-    width: 2.4rem;
-    border-radius: 50%;
-    background-size: cover;
+    .user-photo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 2.4rem;
+      width: 2.4rem;
+      border-radius: 50%;
+      background-size: cover;
+    }
 
     &:hover {
       cursor: pointer;
@@ -57,13 +59,15 @@
       border-bottom: 1px solid $light-grayish-blue;
 
       .menu-body_user-photo {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 5rem;
-        height: 5rem;
-        border-radius: 50%;
-        background-size: cover;
+        .user-photo {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 5rem;
+          height: 5rem;
+          border-radius: 50%;
+          background-size: cover;
+        }
       }
 
       .menu-body_user-name {

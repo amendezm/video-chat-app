@@ -3,6 +3,7 @@ import { useClassNames } from "../hooks/useClassNames";
 import { useOutsideClick } from "../hooks/useOutsideClick";
 
 import { useFirebaseAuth } from "./../hooks/useFirebaseAuth";
+import { FaUser } from "react-icons/fa";
 
 const Menu = () => {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
@@ -39,28 +40,32 @@ const Menu = () => {
     >
       <div
         className="menu-trigger"
-        style={
-          userPhotoUrl
-            ? { backgroundImage: `url(${userPhotoUrl})` }
-            : { backgroundColor: "rgb(12, 148, 238)" }
-        }
         onClick={() => {
           setIsMenuVisible((visibleMenu) => !visibleMenu);
         }}
       >
-        {userPhotoUrl ? "" : userInitials?.toUpperCase()}
+        {userPhotoUrl ? (
+          <div
+            className="user-photo"
+            style={{ backgroundImage: `url(${userPhotoUrl})` }}
+          ></div>
+        ) : (
+          userInitials?.toUpperCase()
+        )}
       </div>
       {isMenuVisible && (
         <div className="menu-body">
           <div className="menu-body_user">
-            <div
-              className="menu-body_user-photo"
-              style={
-                userPhotoUrl
-                  ? { backgroundImage: `url(${userPhotoUrl})` }
-                  : { backgroundColor: "rgb(12, 148, 238)" }
-              }
-            ></div>
+            <div className="menu-body_user-photo">
+              {userPhotoUrl ? (
+                <div
+                  className="user-photo"
+                  style={{ backgroundImage: `url(${userPhotoUrl})` }}
+                ></div>
+              ) : (
+                userInitials?.toUpperCase()
+              )}
+            </div>
             <div className="menu-body_user-name">{user?.displayName}</div>
             <div className="menu-body_user-email">{user?.email}</div>
           </div>
