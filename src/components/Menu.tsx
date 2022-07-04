@@ -3,23 +3,11 @@ import { useClassNames } from "../hooks/useClassNames";
 import { useOutsideClick } from "../hooks/useOutsideClick";
 
 import { useFirebaseAuth } from "./../hooks/useFirebaseAuth";
-import { FaUser } from "react-icons/fa";
+import { UserAvatar } from "./../components/UserAvatar";
 
 const Menu = () => {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const { user, logout } = useFirebaseAuth();
-  const userInitials = useMemo(() => {
-    const displayName = user?.providerData?.[0]?.displayName;
-    if (displayName) {
-      const names = displayName.split(" ");
-      return names
-        .map((name) => name.charAt(0))
-        .join("")
-        .substring(0, names.length == 1 ? 1 : 2);
-    }
-    return user?.email.substring(0, 2);
-  }, [user]);
-  const userPhotoUrl = useMemo(() => user?.providerData?.[0]?.photoURL, [user]);
   const menuRef = useRef();
   const classNames = useClassNames();
 
@@ -44,27 +32,13 @@ const Menu = () => {
           setIsMenuVisible((visibleMenu) => !visibleMenu);
         }}
       >
-        {userPhotoUrl ? (
-          <div
-            className="user-photo"
-            style={{ backgroundImage: `url(${userPhotoUrl})` }}
-          ></div>
-        ) : (
-          userInitials?.toUpperCase()
-        )}
+        <UserAvatar />
       </div>
       {isMenuVisible && (
         <div className="menu-body">
           <div className="menu-body_user">
             <div className="menu-body_user-photo">
-              {userPhotoUrl ? (
-                <div
-                  className="user-photo"
-                  style={{ backgroundImage: `url(${userPhotoUrl})` }}
-                ></div>
-              ) : (
-                userInitials?.toUpperCase()
-              )}
+              <UserAvatar />
             </div>
             <div className="menu-body_user-name">{user?.displayName}</div>
             <div className="menu-body_user-email">{user?.email}</div>
